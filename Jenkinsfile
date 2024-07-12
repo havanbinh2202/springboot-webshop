@@ -15,7 +15,7 @@ pipeline {
                     // sh label: '', script: 'docker push binhha2202/btvnthymleaf'
 
                     // sh label: '', script: 'docker push binhha2202/btvnthymleaf'
-                    sh label: '', script: 'docker pull binhha2202/devops-th '
+                    sh label: '', script: 'docker pull nginx '
                 }
             }
         }
