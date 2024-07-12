@@ -16,64 +16,16 @@
 
 </head>
 <body>
-<section class="container forms">
-    <div class="form login">
-        <div class="form-content">
-            <header>Login</header>
-            <form action="/login" method="post">
-<!--                <div class="field input-field">-->
-<!--                    <input type="email" placeholder="Email" class="input">-->
-<!--                </div>-->
 
-                <div class="field input-field">
-                    <input type="text" placeholder="Username" class="username" name="username">
-                </div>
-
-
-
-                <div class="field input-field">
-                    <input type="password" placeholder="Password" class="password" name="password">
-                    <i class='bx bx-hide eye-icon'></i>
-                </div>
-
-                <div class="form-link">
-                    <a href="#" class="forgot-pass">Forgot password?</a>
-                </div>
-
-                <div class="field button-field">
-                    <button type="submit">Login</button>
-                </div>
-            </form>
-l
-            <div class="form-link">
-                <span>Don't have an account? <a href="/signup" class="link signup-link">Signup</a></span>
-            </div>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="media-options">
-            <a href="#" class="field facebook">
-                <i class='bx bxl-facebook facebook-icon'></i>
-                <span>Login with Facebook</span>
-            </a>
-        </div>
-
-        <div class="media-options">
-            <a href="#" class="field google">
-                <img src="#" alt="" class="google-img">
-                <span>Login with Google</span>
-            </a>
-        </div>
-
-    </div>
-
+<div class="container forms">
     <!-- Signup Form -->
-
     <div class="form signup">
         <div class="form-content">
             <header>Signup</header>
-            <form action="/signup" method="post">
+            <form action="/signup_save" method="post">
+                <div class="error-message">
+                    <span th:text="${message}"></span>
+                </div>
                 <div class="field input-field">
                     <input type="email" placeholder="Email" class="input" name="email">
                 </div>
@@ -87,8 +39,8 @@ l
                 </div>
 
                 <div class="field input-field">
-                    <input type="password" placeholder="Confirm password" class="password" name="password">
-                    <i class='bx bx-hide eye-icon'></i>
+                    <input type="password" placeholder="Confirm password" class="password" name="confirmPassword">
+<!--                    <i class='bx bx-hide eye-icon'></i>-->
                 </div>
 
                 <div class="field button-field">
@@ -97,30 +49,18 @@ l
             </form>
 
             <div class="form-link">
-                <span>Already have an account? <a href="/login" class="link login-link">Login</a></span>
+                <span>Already have an account?
+                    <a href="/login" class="link login-link">Login</a>
+                </span>
             </div>
         </div>
 
-        <div class="line"></div>
-
-        <div class="media-options">
-            <a href="#" class="field facebook">
-                <i class='bx bxl-facebook facebook-icon'></i>
-                <span>Login with Facebook</span>
-            </a>
-        </div>
-
-        <div class="media-options">
-            <a href="#" class="field google">
-                <img src="#" alt="" class="google-img">
-                <span>Login with Google</span>
-            </a>
-        </div>
+<!--        <div class="line"></div>-->
 
     </div>
-</section>
+</div>
 
 <!-- JavaScript -->
-<script src="/js/script.js"></script>
+<!--<script src="/js/script.js"></script>-->
 </body>
 </html>

@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+    <h1>Giỏ Hàng</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Tên Sản Phẩm</th>
+            <th>Giá</th>
+            <th>Số Lượng</th>
+            <th>Tổng</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cart.items}">
+            <td th:text="${item.product.productname}">Tên Sản Phẩm</td>
+            <td th:text="${item.product.price}">Giá</td>
+            <td th:text="${item.quantity}">Số Lượng</td>
+            <td th:text="${item.quantity * item.product.price}">Tổng</td>
+            <td>
+                <form th:action="@{/cart/remove}" method="post">
+                    <input type="hidden" name="productId" th:value="${item.product.id}">
+                    <button type="submit">Xóa</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/">Tiếp Tục Mua Sắm</a>
 </body>
 </html>

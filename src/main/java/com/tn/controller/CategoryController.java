@@ -29,10 +29,10 @@ public class CategoryController {
     @GetMapping
     public String getAll(Model model){
         List<Category> categories = categoryservice.getAll();
-        System.out.println(categories);
 
         model.addAttribute("categories", categories);
-        return "Categorylist";
+        model.addAttribute("page","admin-category-list");
+        return "admin-index";
     }
 
     @GetMapping("delete/{id}")
@@ -53,5 +53,24 @@ public class CategoryController {
         // return "redirect/path"
 
         return "redirect:/admin/category";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id,
+                       Model model){
+        Optional<Category> opCategory = categoryrepo.findById(id);
+        if (opCategory.isEmpty()){
+            System.out.println("Not found Category with id = " + id);
+        }
+
+        Category category = opCategory.get();
+
+//        List<Category> categories = categoryrepo.findAll();
+//
+//        model.addAttribute("product", product);
+        model.addAttribute("category", category);
+        model.addAttribute("page","admin-category-edit");
+
+        return "admin-index";
     }
 }

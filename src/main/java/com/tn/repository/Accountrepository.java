@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 public interface Accountrepository extends JpaRepository<Account, Integer> {
  // c1:    Account findByUsername(String username);
 
-    @Query(value = "FROM Account where username = :username")
-    Account getDataUsername(String username);
+//    @Query(value = "FROM Account where username = :username")
+//    Account getDataUsername(String username);
+    Account findByUsername(String username);
+    Account findByEmail(String email);
+
 }

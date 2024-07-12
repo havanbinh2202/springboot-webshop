@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Your Page Title</title>
+
 </head>
+
 <body>
-$END$
+<!-- Your HTML content here -->
+
+
+<div th:fragment="AdminPostList">
+    <div th:replace="layout-admin.html::LayoutAdmin"></div>
+    <h1 style="text-align: center">List Post</h1>
+
+    <a th:href="@{/admin/post/add}">Add Post</a>
+
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Tac Gia</td>
+            <td>Title</td>
+            <td>Image</td>
+            <td>Content</td>
+
+            <td>action</td>
+            <td>action</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="obj : ${post}">
+            <td th:text="${obj.id}">Id</td>
+            <td th:text="${obj.author}">Tac Gia</td>
+            <td th:text="${obj.title}">Title</td>
+            <td><img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;"></td>
+            <td th:text="${obj.Content}">Content</td>
+
+            <td><a th:href="${'/admin/post/edit/' + obj.id}">Edit</a></td>
+            <td><a th:href="${'/admin/post/delete/' + obj.id}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+<!--    <div class="container">-->
+<!--        <header>-->
+<!--            <h1>VnExpress</h1>-->
+<!--        </header>-->
+<!--        <div class="news-list">-->
+<!--            <div class="row">-->
+<!--            <div class="card col-md-4 mt-5" th:each="obj : ${post}">-->
+<!--                <img th:src="@{/images/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;">-->
+<!--                <h2 th:text="${obj.title}">News Title</h2>-->
+<!--                <p th:text="${#strings.abbreviate(obj.content, 20)}">News Content</p>-->
+<!--                <a th:href="@{/admin/post/view/{id}(id=${obj.id})}">Read more</a>-->
+<!--            </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+</div>
 </body>
+
 </html>

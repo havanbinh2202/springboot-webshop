@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div th:fragment="AdminPostView">
+
+
+<div class="container">
+    <div class="news-item" th:each="obj : ${post}">
+        <p th:text="${obj.author}">Tac Gia</p>
+        <img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;">
+        <h2 th:text="${obj.title}">News Title</h2>
+        <p th:text="${obj.content}">News Content</p>
+    <a href="/admin/post">Back to Post List</a>
+</div>
+</div>

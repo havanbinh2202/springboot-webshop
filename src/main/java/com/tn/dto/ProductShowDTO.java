@@ -3,14 +3,14 @@ package com.tn.dto;
 import lombok.Data;
 
 @Data
-public class ProductListDTO {
+public class ProductShowDTO {
     private int id;
 
     private String productname;
 
     private int price;
 
-    private int quantity;
+    private String Image;
 
     private String categoryname;
 }

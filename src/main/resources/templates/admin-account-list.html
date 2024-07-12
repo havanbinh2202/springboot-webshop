@@ -1,36 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css} "/>
-    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
-</head>
-<body>
+
 <div th:fragment="AdminAccountList">
-<nav class="navbar navbar-expand-sm">
-    <!-- Brand -->
-    <a class="navbar-brand" href="#">Logo</a>
-
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="/">Trang Chủ</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/product">Product</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/category">Category</a>
-        </li>
-
-    </ul>
-</nav>
+    <div th:replace="layout-admin.html::LayoutAdmin"></div>
 
     <h1 style="text-align: center">List Account</h1>
 
 
+    <a th:href="@{/admin/account/add}">Add Account</a>
 
     <table class="table table-bordered">
         <thead>
@@ -55,5 +30,12 @@
             </tr>
         </tbody>
     </table>
-</body>
-</html>
+
+    <ul class="pagination justify-content-end">
+        <li class="page-item"><a class="page-link" th:href="${'/admin/account?page=' + (currentPage - 1)}" th:if="${currentPage > 0}">Previous</a></li>
+
+        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPage)}"><a class="page-link" th:href="${'/admin/account?page=' + (i - 1)}" th:text="${i}">1</a></li>
+
+        <li class="page-item"><a class="page-link" th:href="${'/admin/account?page=' + (currentPage + 1)}" th:if="(${currentPage < totalPage -1})">Next</a></li>
+    </ul>
+</div>

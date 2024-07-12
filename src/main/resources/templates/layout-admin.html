@@ -1,10 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--Hay phải chạy Maven Compile để layout.html mới có hiệu lực-->
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Layout-Admin UI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
+
 <body>
-$END$
+
+<div th:fragment="LayoutAdmin" class="ui bottom attached segment pushable">
+    <link href="https://semantic-ui.com/dist/semantic.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://semantic-ui.com/dist/semantic.min.js"></script>
+
+    <div class="ui inverted left vertical sidebar menu">
+        <a class="item" href="/admin/account">
+            <i class="home icon"></i> Admin (Logo)
+        </a>
+<!--        <a class="item" href="/danhmuc">-->
+<!--            <i class="icon block layout"></i> Danh Mục-->
+<!--        </a>-->
+        <a class="item" href="/admin/product">
+            <i class="icon product hunt"></i> Product
+        </a>
+        <a class="item" href="/admin/category">
+            <i class="icon amazon"></i> Category
+        </a>
+        <a class="item" href="/admin/post">
+            <i class="icon adversal"></i> Post
+        </a>
+
+<!--        <a class="item" href="/phanhoi">-->
+<!--            <i class="icon chat"></i> Phản Hồi-->
+<!--        </a>-->
+<!--        <a class="item" href="/khachhang">-->
+<!--            <i class="icon smile"></i> Khách Hàng-->
+<!--        </a>-->
+<!--        <a class="item" href="/admin/donhang">-->
+<!--            <i class="icon tag"></i> Đơn Hàng-->
+<!--        </a>-->
+
+<!--        <a class="item" href="/nhanvien">-->
+<!--            <i class="icon user"></i> Nhân Viên-->
+<!--        </a>-->
+<!--        <a class="item" href="/caidat">-->
+<!--            <i class="icon wrench"></i> Cài Đặt-->
+<!--        </a>-->
+    </div>
+    <div class="pusher">
+
+        <div class="ui stackable menu">
+            <a class="item header toggle button">
+                ☰
+            </a>
+
+            <div class="menu right">
+                <a class="item header" href="/logout">
+                    <i class="icon sign-out"></i>Log Out
+                </a>
+            </div>
+
+            <!-- <div class="menu right">
+                <div class="ui inline dropdown item">
+                    <div class="text">Account</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="header">Adjust time span</div>
+                        <div class="active item" data-text="today">Log Out</div>
+                        <div class="item" data-text="this week">Edit Account</div>
+                        <div class="item" data-text="this month">View Profile</div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+
+        <!--nội dung riêng-->
+<!--        <i th:replace="${account}"></i>-->
+    </div>
+
+    <script>
+        $('.ui.dropdown').dropdown();
+        $('.ui.sidebar').sidebar('attach events', '.toggle.button');
+    </script>
+
+</div>
+
+<!--<footer>-->
+<!--    <hr> &copy; <span th:text="${#dates.format(#dates.createNow(),'YYYY')}"></span>. Powered by Java Spring Boot &nbsp;-->
+<!--    <span th:text="${caidat.get('email')}"></span> &nbsp;-->
+<!--    <span th:text="${caidat.get('phone')}"></span> &nbsp;-->
+<!--    <span th:text="${caidat.get('dia_chi')}"></span> &nbsp;-->
+<!--</footer>-->
+
+
 </body>
+
 </html>

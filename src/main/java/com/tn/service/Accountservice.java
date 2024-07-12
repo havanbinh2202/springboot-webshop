@@ -10,4 +10,5 @@ public interface Accountservice extends UserDetailsService {
 
     // abstract method, public access modifier
     List<Account> getAll();
+    Account findByUsername(String username);
 }

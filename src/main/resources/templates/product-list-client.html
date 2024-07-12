@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
 <div th:fragment="ProductListClient">
-    <h4>List Product</h4>
+    <h1 style="text-align: center">Danh sách sản phẩm</h1>
+
+
+    <div class="container">
+            <div class="row">
+                <div class="card col-md-4 mt-5" th:each="obj : ${products}">
+                    <td th:text="${obj.productname}">ProductName</td>
+                    <img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;">
+
+                    <a th:href="@{/product/view/{id}(id=${obj.id})}" class="btn btn-primary">Chi tiết</a>
+                </div>
+            </div>
+    </div>
 </div>
-
-<h1>List Product</h1>
-
-</body>
-</html>

@@ -1,5 +1,5 @@
-<div th:fragment="AdminProductEdit">
-    <form action="/admin/product-update" method="post" enctype="multipart/form-data">
+<div th:fragment="AdminCategoryEdit">
+    <form action="/admin/category/update" method="post" enctype="multipart/form-data">
         <h4>Edit Product</h4>
 
         <div class="alert alert-warning" id="message">
@@ -10,16 +10,13 @@
                 $("#message").hide();
 
                 $("#btnSave").click(function () {
-                    let productName = $("#productName").val();
-                    let price = $("#price").val();
+                    let name = $("#name").val();
 
                     let content = "";
-                    if (productName === "") {
+                    if (name === "") {
                         content = "Product Name must be not blank!";
                     }
-                    if (price === "") {
-                        content += "<br>Price must be not blank!";
-                    }
+
                     $("#message").html(content);
                     $("#message").show();
                 });
@@ -27,22 +24,22 @@
         </script>
 
         <div class="mt-3 mb-3">
-            <label for="">Product Name</label>
-            <input type="text" name="productName" id="productName" th:value="${product.productname}" class="form-control form-control-sm">
+            <label for="">Category Name</label>
+            <input type="text" name="name" id="name" th:value="${category.name}" class="form-control form-control-sm">
         </div>
 
-        <div class="mt-3 mb-3">
-            <label for="">Price</label>
-            <input type="text" name="price" id="price" th:value="${product.price}" class="form-control form-control-sm">
-        </div>
+<!--        <div class="mt-3 mb-3">-->
+<!--            <label for="">Price</label>-->
+<!--            <input type="text" name="price" id="price" th:value="${product.price}" class="form-control form-control-sm">-->
+<!--        </div>-->
+
+<!--        <div class="mt-3 mb-3">-->
+<!--            <label for="">Image</label>-->
+<!--            <input type="file" name="image" class="form-control form-control-sm">-->
+<!--        </div>-->
 
         <div class="mt-3 mb-3">
-            <label for="">Image</label>
-            <input type="file" name="image" class="form-control form-control-sm">
-        </div>
-
-        <div class="mt-3 mb-3">
-            <button type="button" id="btnSave" class="btn btn-primary btn-sm">Save</button>
+            <button type="submit" id="btnSave" class="btn btn-primary btn-sm">Save</button>
         </div>
     </form>
 </div>

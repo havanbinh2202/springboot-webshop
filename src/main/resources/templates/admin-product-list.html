@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+
+
+<div th:fragment="AdminProductList">
+    <div th:replace="layout-admin.html::LayoutAdmin"></div>
+    <h1 style="text-align: center">List Product99</h1>
+
+    <a th:href="@{/admin/product/add}">Add Product</a>
+
+
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>ProductName</td>
+            <td>Image</td>
+            <td>CategoryName</td>
+
+            <td>action</td>
+            <td>action</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="obj : ${products}">
+            <td th:text="${obj.id}">Id</td>
+            <td th:text="${obj.productname}">ProductName</td>
+                <td><img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;"></td>
+            <td th:text="${obj.categoryname}">Category Name</td>
+
+            <td><a th:href="${'/admin/product/edit/' + obj.id}">Edit</a></td>
+            <td><a th:href="${'/admin/product/delete/' + obj.id}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+        <ul class="pagination justify-content-end">
+            <li class="page-item"><a class="page-link" th:href="${'/admin/product?page=' + (currentPage - 1)}" th:if="${currentPage > 0}">Previous</a></li>
+
+            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPage)}"><a class="page-link" th:href="${'/admin/product?page=' + (i - 1)}" th:text="${i}">1</a></li>
+
+            <li class="page-item"><a class="page-link" th:href="${'/admin/product?page=' + (currentPage + 1)}" th:if="(${currentPage < totalPage -1})">Next</a></li>
+        </ul>
+</div>
+
+

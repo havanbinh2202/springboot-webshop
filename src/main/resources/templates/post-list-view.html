@@ -1,11 +1,13 @@
-<div th:fragment="AdminPostView">
+<div th:fragment="PostListView">
 
 
 <div class="container">
     <div class="news-item" th:each="obj : ${post}">
-        <img th:src="@{/images/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;">
+        <h3>Tác giả</h3>
+        <h2 th:text="${obj.author}"></h2>
+        <img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;">
         <h2 th:text="${obj.title}">News Title</h2>
         <p th:text="${obj.content}">News Content</p>
-    <a href="/admin/post">Back to Post List</a>
+    <a href="/post">Back to Post List</a>
 </div>
 </div>

@@ -1,2 +1,7 @@
-package com.tn.repository;public class CartItemrepository {
+package com.tn.repository;
+
+import com.tn.entity.CartItem;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CartItemrepository extends JpaRepository<CartItem, Integer> {
 }
