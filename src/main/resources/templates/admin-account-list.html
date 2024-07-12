@@ -8,7 +8,7 @@
     <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
 </head>
 <body>
-
+<div th:fragment="AdminAccountList">
 <nav class="navbar navbar-expand-sm">
     <!-- Brand -->
     <a class="navbar-brand" href="#">Logo</a>
@@ -19,7 +19,7 @@
             <a class="nav-link" href="/">Trang Chủ</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/account">Account</a>
+            <a class="nav-link" href="/admin/product">Product</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/category">Category</a>
@@ -28,32 +28,32 @@
     </ul>
 </nav>
 
-<h1 style="text-align: center">List Product</h1>
+    <h1 style="text-align: center">List Account</h1>
 
 
 
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <td>Id</td>
-        <td>ProductName</td>
-        <td>Quantity</td>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>UserName</td>
+                <td>Email</td>
 
-        <td></td>
-        <td></td>
+                <td></td>
+                <td></td>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="obj : ${products}">
-        <td th:text="${obj.id}">Id</td>
-        <td th:text="${obj.productname}">ProductName</td>
-        <td th:text="${obj.quantity}">Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="obj : ${accounts}">
+                <td th:text="${obj.id}">Id</td>
+                <td th:text="${obj.username}">UserName</td>
+                <td th:text="${obj.email}">Email</td>
 
-        <td>Edit</td>
-        <td><a th:href="${'/admin/product/delete/' + obj.id}">Delete</a></td>
-    </tr>
-    </tbody>
-</table>
+                <td>Edit</td>
+                <td><a th:href="${'/admin/account/delete/' + obj.id}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
