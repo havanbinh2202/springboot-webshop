@@ -37,6 +37,8 @@ public class AccountserviceImpl implements Accountservice {
             throw new UsernameNotFoundException("Account not found");
         }
 
+        System.out.println("Account role: " + account.getRole());
+
         // Collections.emptylist(): cứ đăng nhập đúng username, password là dc
         // k quan trong quyền nên để emptylist
 //        return new User(username,account.getPassword(), Collections.emptyList());
@@ -44,7 +46,7 @@ public class AccountserviceImpl implements Accountservice {
         //phân quyền: role = admin hoặc role = user
 
         List<GrantedAuthority> listRole = new ArrayList<>();
-        listRole.add(new SimpleGrantedAuthority(account.getRole()));
+        listRole.add(new SimpleGrantedAuthority(account.getRole().name()));
 
         return new User(username, account.getPassword(), listRole);
     }

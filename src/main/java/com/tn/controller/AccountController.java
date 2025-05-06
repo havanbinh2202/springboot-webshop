@@ -2,6 +2,7 @@ package com.tn.controller;
 
 import com.tn.entity.Account;
 import com.tn.entity.Product;
+import com.tn.entity.Role;
 import com.tn.repository.Accountrepository;
 import com.tn.service.Accountservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,9 @@ public class AccountController {
             mailMessage.setText(content);
 
             // Sending the mail
+            // Sending the mail
             javaMailSender.send(mailMessage);
+            System.out.println("Email sent successfully.");
         } catch (Exception e) {
             System.out.println("Send email fail");
         }
@@ -108,17 +111,25 @@ public class AccountController {
     @PostMapping("/save")
     public String save(@RequestParam String username,
                        @RequestParam String password,
-                       @RequestParam String email
+                       @RequestParam String email,
+                       @RequestParam(required = false) String role
                        ){
         System.out.println(username);
         System.out.println(email);
 
+        // Kiểm tra nếu tài khoản đã tồn tại
+        if (accountrepo.existsByUsername(username)) {
+            System.out.println("Username already exists");
+            return "redirect:/admin/account?error=usernameExists";
+        }
+        // Gán mặc định ROLE_USER nếu role không có
+        Role accountRole = (role == null || role.isEmpty()) ? Role.ROLE_USER : Role.valueOf(role);
 
         Account account = new Account();
         account.setUsername(username);
         account.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
         account.setEmail(email);
-//        account.setRole(role);
+        account.setRole(accountRole);
 
         accountrepo.save(account);
         return "redirect:/admin/account";

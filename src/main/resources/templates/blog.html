@@ -123,13 +123,15 @@
         </div>
         <div class="row g-4">
             <div th:each="obj : ${post}" class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <img class="img-fluid" th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="Post Image">
-                <div class="bg-light p-4">
-                    <a class="d-block h5 lh-base mb-4" th:href="@{/post/view/{id}(id=${obj.id})}" th:text="${obj.title}">Post Title</a>
-                    <p th:text="${#strings.abbreviate(obj.content, 30)}">News Content</p>
-                    <div class="text-muted border-top pt-4">
-                        <small class="me-3"><i class="fa fa-user text-primary me-2"></i><span th:text="${obj.author}">Author</span></small>
-                        <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i><span th:text="${obj.date}">01 Jan, 2045</span></small>
+                <div class="h-100 d-flex flex-column border shadow-sm">
+                    <img class="img-fluid" th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="Post Image">
+                    <div class="bg-light p-4 d-flex flex-column h-100">
+                        <a class="d-block h5 lh-base mb-3" th:href="@{/post/view/{id}(id=${obj.id})}" th:text="${obj.title}">Post Title</a>
+                        <p th:text="${#strings.abbreviate(obj.content, 30)}">News Content</p>
+                        <div class="text-muted border-top pt-3 mt-auto">
+                            <small class="me-3"><i class="fa fa-user text-primary me-2"></i><span th:text="${obj.author}">Author</span></small>
+                            <small><i class="fa fa-calendar text-primary me-2"></i><span th:text="${obj.date}">01 Jan, 2045</span></small>
+                        </div>
                     </div>
                 </div>
             </div>

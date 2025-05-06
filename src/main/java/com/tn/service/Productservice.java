@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.List;
 import java.util.Map;
 
-public interface Productservive {
+public interface Productservice {
     List<Product> getAll();
 
-
+    Product getById(Long productId);
 }

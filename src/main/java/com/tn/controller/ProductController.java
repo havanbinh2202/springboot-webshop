@@ -2,11 +2,10 @@ package com.tn.controller;
 
 import com.tn.dto.ProductShowDTO;
 import com.tn.entity.Category;
-import com.tn.entity.Post;
 import com.tn.entity.Product;
 import com.tn.repository.Categoryrepository;
 import com.tn.repository.Productrepository;
-import com.tn.service.Productservive;
+import com.tn.service.Productservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -39,13 +38,13 @@ public class ProductController {
 //
 //        return "client-index";
 //    }
-    private Productservive productservive;
+    private Productservice productservive;
 
     private Productrepository productrepo;
 
     private Categoryrepository categoryrepo;
 
-    public ProductController(Productservive productservive, Productrepository productrepo,
+    public ProductController(Productservice productservive, Productrepository productrepo,
                              Categoryrepository categoryrepo) {
         this.productservive = productservive;
         this.productrepo = productrepo;
@@ -88,13 +87,13 @@ public class ProductController {
         List<ProductShowDTO> productShowDTOS = new ArrayList<>();
         products.forEach(obj -> {
             ProductShowDTO productShowDTO = new ProductShowDTO();
-            productShowDTO.setId(obj.getId());
+            productShowDTO.setProductId(obj.getProductId());
             productShowDTO.setProductname(obj.getProductname());
             productShowDTO.setPrice(obj.getPrice());
             productShowDTO.setImage(obj.getImage());
 
             if (obj.getCategory() != null)
-                productShowDTO.setCategoryname(obj.getCategory().getName());
+                productShowDTO.setCategoryname(obj.getCategory().getCategoryname());
 
             productShowDTOS.add(productShowDTO);
         });
@@ -106,15 +105,16 @@ public class ProductController {
         return "admin-index";
     }
 
-    @GetMapping("delete/{id}")
-    public String delete(@PathVariable Integer id,
+    @GetMapping("delete/{productId}")
+    public String delete(@PathVariable Long productId,
                          Model model) {
-        Optional<Product> opProduct = productrepo.findById(id);
+        Optional<Product> opProduct = productrepo.findById(productId);
         if (opProduct.isEmpty()) {
-            System.out.println("Not found Account with id = " + id);
+            System.out.println("Not found Account with id = " + productId);
         }
 
-        productrepo.deleteById(id);
+        productrepo.deleteById(productId
+        );
         List<Product> products = productservive.getAll();
         System.out.println(products);
 
@@ -122,7 +122,7 @@ public class ProductController {
 
         //return "file-html"
         // return "redirect/path"
-        sendEmail("Delete Product","Bạn vừa xóa 1 account: " + opProduct.get().getProductname());
+        sendEmail("Delete Product","Bạn vừa xóa sản phẩm: " + opProduct.get().getProductname());
         return "redirect:/admin/product";
     }
 
@@ -140,7 +140,8 @@ public class ProductController {
         System.out.println(productName);
         System.out.println(image);
 
-        String uploadDir = "C:/Users/Public/Javapro/demo25_AccountThymeleaf/src/main/resources/static/img/";
+//        String uploadDir = "C:/Users/Public/Javapro/demo25_AccountThymeleaf/src/main/resources/static/img/";
+        String uploadDir = "src/main/resources/static/img/";
         String fileName = StringUtils.cleanPath(image.getOriginalFilename());
 
         // Lưu trữ hình ảnh vào thư mục static/images
@@ -165,12 +166,12 @@ public class ProductController {
         return "redirect:/admin/product";
 
     }
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer id,
+    @GetMapping("/edit/{productId}")
+    public String edit(@PathVariable Long productId,
                        Model model){
-        Optional<Product> opProduct = productrepo.findById(id);
+        Optional<Product> opProduct = productrepo.findById(productId);
         if (opProduct.isEmpty()){
-            System.out.println("Not found Product with id = " + id);
+            System.out.println("Not found Product with id = " + productId);
         }
 
         Product product = opProduct.get();
@@ -183,15 +184,15 @@ public class ProductController {
 
         return "admin-index";
     }
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable Integer id,
+    @PostMapping("/update/{productId}")
+    public String update(@PathVariable Long productId,
                          @RequestParam String productName,
                          @RequestParam int price,
                          @RequestParam MultipartFile image,
                          @RequestParam Integer category_id){
-        Optional<Product> opProduct = productrepo.findById(id);
+        Optional<Product> opProduct = productrepo.findById(productId);
         if (opProduct.isEmpty()){
-            System.out.println("Not found Product with id = " + id);
+            System.out.println("Not found Product with id = " + productId);
         }
 
 

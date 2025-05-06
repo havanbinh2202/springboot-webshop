@@ -86,7 +86,7 @@
                 <a class="btn-sm-square bg-white rounded-circle ms-3" href="/user-info">
                     <small class="fa fa-user text-body"></small>
                 </a>
-                <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
+                <a class="btn-sm-square bg-white rounded-circle ms-3" href="/cart">
                     <small class="fa fa-shopping-bag text-body"></small>
                 </a>
             </div>
@@ -145,7 +145,7 @@
                                 <img class="img-fluid mb-4" th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="" style="width: 200px; height:200px;">
                                 <h4 class="mb-3" th:text="${obj.productname}">ProductName</h4>
                                 <p class="mb-2" th:text="'Price: $' + ${obj.price}"></p>
-                                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" th:href="@{/product/view/{id}(id=${obj.id})}">Read More</a>
+                                <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" th:href="@{/product/view/{id}(id=${obj.productId})}">Read More</a>
                             </div>
                         </div>
                     </div>

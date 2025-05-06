@@ -2,6 +2,7 @@ package com.tn.controller;
 
 
 import com.tn.entity.Account;
+import com.tn.entity.Role;
 import com.tn.repository.Accountrepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -66,11 +67,16 @@ public class AccountClientController {
         account.setPassword(passwordEncoder.encode(password));
 
         account.setEmail(email);
-
+        // Nếu không có role, mặc định gán ROLE_USER
         if (role == null || role.isEmpty()) {
-            account.setRole("ROLE_USER"); // Set to ROLE_USER if no role provided
+            account.setRole(Role.ROLE_USER); // Set to ROLE_USER if no role provided
         } else {
-            account.setRole(role); // Use provided role if available
+            try {
+                account.setRole(Role.valueOf(role)); // Sử dụng Enum để gán giá trị role
+            } catch (IllegalArgumentException e) {
+                model.addAttribute("message", "Role không hợp lệ!");
+                return "signup"; // Nếu role không hợp lệ, giữ nguyên trang signup
+            }
         }
 
         model.addAttribute("message", "đăng ký thành công!");
@@ -88,7 +94,7 @@ public class AccountClientController {
         // Thêm thông tin người dùng vào model
         model.addAttribute("username", account.getUsername());
         model.addAttribute("email", account.getEmail());
-        model.addAttribute("role", account.getRole());
+        model.addAttribute("role", account.getRole().name());
 
         return "user-info"; // Tên view của form thông tin người dùng
     }

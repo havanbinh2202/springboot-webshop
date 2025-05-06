@@ -1,5 +1,5 @@
 <div th:fragment="AdminProductEdit">
-    <form th:action="${'/admin/product/update/' + product.id}" method="post" enctype="multipart/form-data">
+    <form th:action="${'/admin/product/update/' + product.productId}" method="post" enctype="multipart/form-data">
         <h4>Edit Product</h4>
 
         <div class="alert alert-warning" id="message">
@@ -30,7 +30,7 @@
             <label for="">Product Name</label>
             <input type="text" name="productName" id="productName" th:value="${product.productname}" class="form-control form-control-sm">
         </div>
-        <input type="hidden" name="id" th:value="${product.id}" />
+        <input type="hidden" name="id" th:value="${product.productId}" />
         <div class="mt-3 mb-3">
             <label for="">Price</label>
             <input type="text" name="price" id="price" th:value="${product.price}" class="form-control form-control-sm">
@@ -43,8 +43,8 @@
         <div class="mt-3 mb-3">
             <label for="">Category</label>
             <select name="category_id" class="form-select form-select-sm">
-                <option th:value="${obj.id}" th:each="obj : ${categories}" th:selected="${product.category != null && product.category.id == obj.id}">
-                    <span th:text="${obj.name}"></span>
+                <option th:value="${obj.categoryId}" th:each="obj : ${categories}" th:selected="${product.category != null && product.category.categoryId == obj.categoryId}">
+                    <span th:text="${obj.categoryname}"></span>
                 </option>
             </select>
         </div>

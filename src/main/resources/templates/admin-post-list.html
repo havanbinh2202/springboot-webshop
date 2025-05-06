@@ -36,7 +36,7 @@
             <td th:text="${obj.id}">Id</td>
             <td th:text="${obj.author}">Tac Gia</td>
             <td th:text="${obj.title}">Title</td>
-            <td><img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;"></td>
+            <td><img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="width: 60px"></td>
             <td th:text="${obj.Content}">Content</td>
 
             <td><a th:href="${'/admin/post/edit/' + obj.id}">Edit</a></td>

@@ -13,10 +13,11 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int categoryId;
 
-    private int id;
-
-    private String name;
+    @Column(name = "categoryname", length = 255)
+    private String categoryname;
 
 
     @OneToMany(mappedBy = "category")

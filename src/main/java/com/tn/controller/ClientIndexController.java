@@ -43,13 +43,13 @@ public class ClientIndexController {
         List<ProductShowDTO> productShowDTOS = new ArrayList<>();
         products.forEach(obj -> {
             ProductShowDTO productShowDTO = new ProductShowDTO();
-            productShowDTO.setId(obj.getId());
+            productShowDTO.setProductId(obj.getProductId());
             productShowDTO.setProductname(obj.getProductname());
             productShowDTO.setPrice(obj.getPrice());
             productShowDTO.setImage(obj.getImage());
 
             if (obj.getCategory() != null)
-                productShowDTO.setCategoryname(obj.getCategory().getName());
+                productShowDTO.setCategoryname(obj.getCategory().getCategoryname());
 
             productShowDTOS.add(productShowDTO);
         });
@@ -79,13 +79,13 @@ public class ClientIndexController {
         List<ProductShowDTO> productShowDTOS = new ArrayList<>();
         products.forEach(obj -> {
             ProductShowDTO productShowDTO = new ProductShowDTO();
-            productShowDTO.setId(obj.getId());
+            productShowDTO.setProductId(obj.getProductId());
             productShowDTO.setProductname(obj.getProductname());
             productShowDTO.setPrice(obj.getPrice());
             productShowDTO.setImage(obj.getImage());
 
             if (obj.getCategory() != null)
-                productShowDTO.setCategoryname(obj.getCategory().getName());
+                productShowDTO.setCategoryname(obj.getCategory().getCategoryname());
 
             productShowDTOS.add(productShowDTO);
         });
@@ -99,11 +99,11 @@ public class ClientIndexController {
         return "product.html";
     }
 
-    @GetMapping("/product/view/{id}")
-    public String detail(@PathVariable Integer id, Model model) {
-        Optional<Product> opProduct = productRepo.findById(id);
+    @GetMapping("/product/view/{productId}")
+    public String detail(@PathVariable Long productId, Model model) {
+        Optional<Product> opProduct = productRepo.findById(productId);
         if (opProduct.isEmpty()) {
-            System.out.println("Not found Product with id = " + id);
+            System.out.println("Not found Product with id = " + productId);
             return "redirect:/product";
         }
 

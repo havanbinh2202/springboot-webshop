@@ -89,7 +89,7 @@ public class PostController {
         System.out.println(title);
         System.out.println(image);
 
-        String uploadDir = "C:/Users/Public/Javapro/demo25_AccountThymeleaf/src/main/resources/static/img/";
+        String uploadDir = "src/main/resources/static/img/";
         String fileName = StringUtils.cleanPath(image.getOriginalFilename());
 
         // Lưu trữ hình ảnh vào thư mục static/images

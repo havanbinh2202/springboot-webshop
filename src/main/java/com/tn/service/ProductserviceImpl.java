@@ -1,20 +1,13 @@
 package com.tn.service;
 
-import com.tn.entity.Category;
 import com.tn.entity.Product;
-import com.tn.repository.Accountrepository;
 import com.tn.repository.Productrepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
-public class ProductserviceImpl implements Productservive {
+public class ProductserviceImpl implements Productservice {
 
     private Productrepository productrepo;
 
@@ -27,6 +20,10 @@ public class ProductserviceImpl implements Productservive {
         List<Product> products = productrepo.findAll();
         return products;
      }
+    public Product getById(Long productId) {
+        // Tìm sản phẩm bằng productId, bạn có thể điều chỉnh nếu bạn dùng kiểu dữ liệu khác
+        return productrepo.findById(productId).orElse(null);  // Nếu không tìm thấy trả về null
+    }
 
 
 }

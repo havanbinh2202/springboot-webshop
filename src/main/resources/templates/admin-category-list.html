@@ -20,12 +20,12 @@
   </thead>
   <tbody>
   <tr th:each="obj : ${categories}">
-    <td th:text="${obj.id}">Id</td>
-    <td th:text="${obj.name}">CategoryName</td>
+    <td th:text="${obj.categoryId}">Id</td>
+    <td th:text="${obj.categoryname}">CategoryName</td>
 
 
-    <td><a th:href="${'/admin/category/edit/' + obj.id}">Edit</a></td>
-    <td><a th:href="${'/admin/category/delete/' + obj.id}">Delete</a></td>
+    <td><a th:href="${'/admin/category/edit/' + obj.categoryId}">Edit</a></td>
+    <td><a th:href="${'/admin/category/delete/' + obj.categoryId}">Delete</a></td>
   </tr>
   </tbody>
 </table>

@@ -23,13 +23,13 @@
         </thead>
         <tbody>
         <tr th:each="obj : ${products}">
-            <td th:text="${obj.id}">Id</td>
+            <td th:text="${obj.productId}">Id</td>
             <td th:text="${obj.productname}">ProductName</td>
                 <td><img th:src="@{/img/{imageName}(imageName=${obj.image})}" alt="News Image"style="max-width: 100px; max-height: 100px;"></td>
             <td th:text="${obj.categoryname}">Category Name</td>
 
-            <td><a th:href="${'/admin/product/edit/' + obj.id}">Edit</a></td>
-            <td><a th:href="${'/admin/product/delete/' + obj.id}">Delete</a></td>
+            <td><a th:href="${'/admin/product/edit/' + obj.productId}">Edit</a></td>
+            <td><a th:href="${'/admin/product/delete/' + obj.productId}">Delete</a></td>
         </tr>
         </tbody>
     </table>

@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Data
 @Entity
@@ -15,8 +17,8 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private int id;
+    @Column(name = "account_id")
+    private Integer accountId;
 
     private String username;
 
@@ -24,29 +26,14 @@ public class Account {
 
     private String email;
 
-//    private String role;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false) // Make role mandatory
-//    private String role; // Default role
-    private String role = "ROLE_ADMIN"; // Default role
+    private Role role = Role.ROLE_USER; // Default role
     private Date createdAt;
 
     private Date updatedAt;
-
-    @OneToOne(mappedBy = "account")
     @ToString.Exclude
-    private Cart cart;
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    private Set<Order> orders=new HashSet<Order>();
 
-    @Override
-    public int hashCode() {
-        // Tính toán hashCode dựa trên id hoặc username, bỏ qua cart
-        return Objects.hash(id, username);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return id == account.id && Objects.equals(username, account.username);
-    }
 }

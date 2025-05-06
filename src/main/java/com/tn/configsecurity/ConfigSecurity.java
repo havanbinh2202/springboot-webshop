@@ -18,7 +18,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @EnableWebSecurity
 public class ConfigSecurity {
 
-    private String[] arrPath = {"/", "/product", "/img/**", "/css/**", "/js/**", "/lib/**", "/scss/**","/signup","/search","/feature","/about","/contact","/testimonial","/post","/errol"};
+    private String[] arrPath = {"/", "/product", "/img/**", "/css/**",
+            "/js/**", "/lib/**", "/scss/**","/signup","/search",
+            "/feature","/about","/contact","/testimonial","/post","/errol"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -30,7 +32,7 @@ public class ConfigSecurity {
 
 
         // muốn vào path admin cần có role admin
-        httpSecurity.authorizeRequests().requestMatchers("/admin/**").hasRole("ADMIN");
+        httpSecurity.authorizeRequests().requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN");
 
         // tất cả request đều phải đăng nhập
         httpSecurity.authorizeRequests().anyRequest().authenticated();

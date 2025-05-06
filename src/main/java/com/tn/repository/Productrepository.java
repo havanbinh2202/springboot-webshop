@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public interface Productrepository extends JpaRepository<Product, Integer> {
+public interface Productrepository extends JpaRepository<Product, Long> {
 
 //    @Query(value = "FROM Product where productname = :productname")
 //    Account getDataProductName(String productname);

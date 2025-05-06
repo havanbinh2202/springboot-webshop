@@ -21,12 +21,12 @@
         </thead>
         <tbody>
             <tr th:each="obj : ${accounts}">
-                <td th:text="${obj.id}">Id</td>
+                <td th:text="${obj.accountId}">Id</td>
                 <td th:text="${obj.username}">UserName</td>
                 <td th:text="${obj.email}">Email</td>
 
                 <td>Edit</td>
-                <td><a th:href="${'/admin/account/delete/' + obj.id}">Delete</a></td>
+                <td><a th:href="${'/admin/account/delete/' + obj.accountId}">Delete</a></td>
             </tr>
         </tbody>
     </table>
